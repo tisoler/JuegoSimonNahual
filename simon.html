@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simón</title>
+        <link rel="stylesheet" href="simon.css">
+    </head>
+    <body style="height: calc(100vh - 40px); margin: 20px;">
+        <div class="filaUnBoton">
+            <div class="boton botonVerde" onclick="clickVerde()"></div>
+        </div>
+        <div class="filaDosBotones">
+            <div class="boton botonRojo" onclick="clickRojo()"></div>
+            <div style="width: 33%; height: 100%; display: flex; flex-direction: column;">
+                <div class="contenedorJugador" id="contenedorJugador1">
+                    <span id="jugador1"></span>
+                </div>
+                <div class="contenedorJugador" id="contenedorJugador2">
+                    <span id="jugador2"></span>
+                </div>
+            </div>
+            <div class="boton botonAzul" onclick="clickAzul()"></div>
+        </div>
+        <div class="filaUnBoton">
+            <div class="boton botonAmarillo" onclick="clickAmarillo()"></div>
+        </div>
+    </body>
+</html>
+
+<script>
+    function pintarJugadorActivo(juegaJugador1) {
+        const contenedorJugador1 = document.getElementById('contenedorJugador1');
+        const contenedorJugador2 = document.getElementById('contenedorJugador2');
+        contenedorJugador1.style.backgroundColor = juegaJugador1 ? 'aqua' : 'white';
+        contenedorJugador2.style.backgroundColor = juegaJugador1 ? 'white' : 'aqua';
+    }
+
+    var jugador1 = "";
+    var jugador2 = "";
+    movimientos = [];
+
+    function inicializarJuego () {
+        jugador1 = prompt("Ingrese nombre de jugador/a 1", "Jugador/a 1");
+        var etiquetaJugador1 = document.getElementById("jugador1");
+        etiquetaJugador1.textContent = jugador1;
+
+        jugador2 = prompt("Ingrese nombre de jugador/a 2", "Jugador/a 2");
+        var etiquetaJugador2 = document.getElementById("jugador2");
+        etiquetaJugador2.textContent = jugador2;
+
+        movActual = 0;
+        movimientos = [];
+        juegaJugador1 = true;
+        pintarJugadorActivo(juegaJugador1);
+    }
+
+    inicializarJuego();
+
+    function ejecutarTurno(movimiento) {
+        if (movActual < movimientos.length) {
+            if (movimientos[movActual] === movimiento) {
+                movActual += 1;
+            } else {
+                alert(`El juego ha terminado, ¡¡ha ganado ${juegaJugador1 ? jugador2 : jugador1}!!`);
+                inicializarJuego();
+            }
+        } else {
+            movimientos.push(movimiento);
+            movActual = 0;
+            juegaJugador1 = !juegaJugador1;
+            pintarJugadorActivo(juegaJugador1);
+        }
+    }
+
+    function sonarAudio(nombreAudio) {
+        var audio = new Audio(nombreAudio);
+        return audio.play();
+    }
+
+    function clickVerde() {
+        sonarAudio('clink.wav').then(() => ejecutarTurno('verde'));
+    }
+
+    function clickRojo() {
+        sonarAudio('metal.wav').then(() => ejecutarTurno('rojo'));
+    }
+
+    function clickAzul() {
+        sonarAudio('dibujitos.wav').then(() => ejecutarTurno('azul'));
+    }
+
+    function clickAmarillo() {
+        sonarAudio('campana.wav').then(() => ejecutarTurno('amarillo'));
+    }
+</script>

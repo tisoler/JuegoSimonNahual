@@ -1,0 +1,92 @@
+.filaUnBoton {
+    display: flex; align-items: center; justify-content: center; width: 100%; height: 33%;
+}
+
+.filaDosBotones {
+    display: flex; align-items: center; justify-content: space-between; width: 100%; height: 33%;
+}
+
+.boton {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    cursor: pointer;
+    color: white;
+    font-size: 100px;
+}
+
+.botonVerde {
+    background-color: #024c02;
+}
+
+.botonVerde::before {
+    content: '\2191';
+}
+
+.botonVerde:hover {
+    background-color: green;
+}
+
+.botonVerde:active {
+    background-color: #024c02;
+}
+
+.botonRojo {
+    background-color: #b10202;
+}
+
+.botonRojo::before {
+    content: '\2190';
+}
+
+.botonRojo:hover {
+    background-color: red;
+}
+
+.botonRojo:active {
+    background-color: #b10202;
+}
+
+.botonAzul {
+    background-color: #0f03ab;
+}
+
+.botonAzul::before {
+    content: '\2192';
+}
+
+.botonAzul:hover {
+    background-color: blue;
+}
+
+.botonAzul:active {
+    background-color: #0f03ab;
+}
+
+.botonAmarillo {
+    background-color: #c5c503;
+}
+
+.botonAmarillo::before {
+    content: '\2193';
+}
+
+.botonAmarillo:hover {
+    background-color: yellow;
+}
+
+.botonAmarillo:active {
+    background-color: #c5c503;
+}
+
+.contenedorJugador {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-family: monospace;
+}
